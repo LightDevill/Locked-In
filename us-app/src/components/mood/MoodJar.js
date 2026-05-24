@@ -1,2 +1,0 @@
-import Svg, { Rect, Circle } from 'react-native-svg';
-export default function MoodJar({ moods=[] }) { return <Svg width={220} height={260}><Rect x={40} y={30} width={140} height={200} rx={24} fill="#F5F3EE" stroke="#D1D5DB"/><Rect x={70} y={16} width={80} height={20} rx={8} fill="#C17767"/>{moods.slice(0,10).map((m,i)=><Circle key={i} cx={60 + (i%4)*35} cy={210 - Math.floor(i/4)*35} r={12} fill={m.color || '#FFB5A3'} />)}</Svg>; }

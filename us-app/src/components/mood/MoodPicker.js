@@ -1,3 +1,0 @@
-import { Pressable, Text, View } from 'react-native';
-const moods=[['😊','Happy','#FFD93D'],['🥰','Love','#FF6B8A'],['🤩','Excited','#FF9A56'],['😌','Calm','#7DDBA3'],['😢','Sad','#7C9FFC'],['😰','Anxious','#B088F9'],['😴','Tired','#C9D1D9'],['🙏','Grateful','#FFB5A3']];
-export default function MoodPicker({ onPick }) { return <View className="flex-row flex-wrap gap-2">{moods.map(([emoji,feeling,color])=><Pressable key={feeling} className="w-[48%] p-4 rounded-xl" style={{backgroundColor:color}} onPress={()=>onPick({emoji,feeling,color})}><Text className="text-2xl">{emoji}</Text><Text>{feeling}</Text></Pressable>)}</View>; }

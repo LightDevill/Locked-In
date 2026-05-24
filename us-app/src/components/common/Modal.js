@@ -1,2 +1,0 @@
-import { Modal as RNModal, Pressable, ScrollView, Text, View } from 'react-native';
-export default function Modal({ visible, onClose, title, children, footer }) { return <RNModal visible={visible} animationType="slide" transparent><Pressable className="flex-1 bg-black/50" onPress={onClose}><View className="mt-auto bg-paper-50 rounded-t-3xl p-4 max-h-[80%]"><Text className="text-xl font-bold mb-3">{title}</Text><ScrollView>{children}</ScrollView>{footer}</View></Pressable></RNModal>; }
