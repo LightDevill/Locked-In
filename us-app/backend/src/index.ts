@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { prisma } from './config/db';
 import redis from './config/redis';
+import authRoutes from './routes/auth.routes';
 
 dotenv.config();
 
@@ -38,6 +39,9 @@ app.get('/health', async (_req: Request, res: Response) => {
     services: { db: dbStatus, redis: redisStatus },
   });
 });
+
+// ── Routes ───────────────────────────────────────────────────
+app.use('/api/auth', authRoutes);
 
 // ── Boot ─────────────────────────────────────────────────────
 app.listen(port, () => {
