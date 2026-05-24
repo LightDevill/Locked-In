@@ -44,6 +44,6 @@ app.get('/health', async (_req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 
 // ── Boot ─────────────────────────────────────────────────────
-app.listen(port, () => {
-  console.log(`[server]: Running at http://localhost:${port}`);
+app.listen(port as number, "0.0.0.0", () => {
+  console.log(`[server]: Running at http://0.0.0.0:${port} (Accessible on network)`);
 });

@@ -84,6 +84,16 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.hilt.navigation.compose)
 
+  // Networking (Retrofit, OkHttp, Serialization)
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.converter.kotlinx.serialization)
+  implementation(libs.okhttp)
+  implementation(libs.okhttp.logging.interceptor)
+  implementation(libs.kotlinx.serialization.json)
+
+  // DataStore Preferences
+  implementation(libs.androidx.datastore.preferences)
+
   // Hilt
   implementation(libs.hilt.android)
   kapt(libs.hilt.compiler)
