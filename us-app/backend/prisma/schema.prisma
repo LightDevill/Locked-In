@@ -1,0 +1,62 @@
+// ============================================================
+// Us App — Prisma Schema
+// MVP Scope: User + PairConnection only
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────────────────────
+// User
+// Core user identity. Passwords are always stored as bcrypt hash.
+// ─────────────────────────────────────────────────────────────
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Pairing relations
+  connectionsSent     PairConnection[] @relation("Initiator")
+  connectionsReceived PairConnection[] @relation("Receiver")
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────────────────────
+// PairConnection
+// A unique bond between two users.
+// One initiates, the other receives.
+// Status tracks the lifecycle of the pairing.
+// ─────────────────────────────────────────────────────────────
+model PairConnection {
+  id          String            @id @default(cuid())
+  code        String            @unique   // 6-char join code
+  status      ConnectionStatus  @default(PENDING)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  initiatorId String
+  receiverId  String?
+
+  initiator   User  @relation("Initiator", fields: [initiatorId], references: [id])
+  receiver    User? @relation("Receiver",  fields: [receiverId],  references: [id])
+
+  @@map("pair_connections")
+}
+
+// ─────────────────────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────────────────────
+enum ConnectionStatus {
+  PENDING
+  ACTIVE
+  DISCONNECTED
+}
