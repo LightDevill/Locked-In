@@ -2,6 +2,9 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.hilt)
+  alias(libs.plugins.kapt)
 }
 
 android {
@@ -79,4 +82,9 @@ dependencies {
 
   // Navigation
   implementation(libs.androidx.navigation.compose)
+  implementation(libs.androidx.hilt.navigation.compose)
+
+  // Hilt
+  implementation(libs.hilt.android)
+  kapt(libs.hilt.compiler)
 }

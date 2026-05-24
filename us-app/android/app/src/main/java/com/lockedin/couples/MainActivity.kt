@@ -13,6 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.lockedin.couples.theme.UsTheme
 
+import dagger.hilt.android.AndroidEntryPoint
+import com.lockedin.couples.navigation.AppNavigation
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -20,9 +24,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       UsTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(text = "Hello, Us!")
-          }
+          AppNavigation()
         }
       }
     }
